@@ -15,7 +15,7 @@ const router = Router();
 
 router.post('/sign-up', validate(signUpSchema), signUp);
 router.post('/sign-in', validate(loginSchema), loginUser);
-router.get('/users', authenticate, getAllUsers);
+router.get('/users', getAllUsers);
 router.get('/users/:id', authenticate, getUser);
 router.put('/users/:id', authenticate, validate(signUpSchema), updateUser);
 router.delete('/users/:id', authenticate, deleteUser);
