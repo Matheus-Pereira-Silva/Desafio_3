@@ -1,7 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-export function authenticate(req: Request, res: Response, next: NextFunction) {
+export interface AuthenticatedRequest extends Request {
+  userId?: string;
+}
+
+export function authenticate(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   const token = req.header('Authorization')?.replace('Bearer ', '');
 
   if (!token) {
@@ -9,8 +13,14 @@ export function authenticate(req: Request, res: Response, next: NextFunction) {
   }
 
   try {
-    jwt.verify(token, process.env.JWT_SECRET!);
-    next();
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as jwt.JwtPayload;
+
+    if (typeof decoded === 'object' && decoded.id) {
+      req.userId = decoded.id;
+      next();
+    } else {
+      res.status(401).json({ message: 'Invalid token' });
+    }
   } catch (error) {
     res.status(401).json({ message: 'Invalid token' });
   }
