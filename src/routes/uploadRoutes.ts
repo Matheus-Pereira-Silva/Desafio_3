@@ -13,7 +13,7 @@ const s3 = new S3Client({
   }
 });
 
-router.get('/upload-url', async (req, res) => {
+router.get('/uupload-url', async (req, res) => {
   const { fileName, fileType } = req.query;
 
   if (!fileName || !fileType) {
