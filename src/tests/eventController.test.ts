@@ -8,7 +8,7 @@ describe('Event Controller', () => {
       .set(
         'Authorization',
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YjNjNjY5YThiZDliOWQwMGIzYWY5ZSIsImlhdCI6MTcyMzA1Nzc4MiwiZXhwIjoxNzIzMDYxMzgyfQ.3Jf5SRdI-x76vtUDmFNLfjU9BmgPMscLJ35DfA2qptI'
-      ) // Substitua
+      )
       .send({
         title: 'event aaa',
         date: 'sunday'
