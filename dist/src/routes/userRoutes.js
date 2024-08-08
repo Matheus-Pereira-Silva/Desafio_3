@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const userController_1 = require("../controllers/userController");
+const authMiddleware_1 = require("../middlewares/authMiddleware");
+const validateMiddleware_1 = __importDefault(require("../middlewares/validateMiddleware"));
+const userValadation_1 = require("../validations/userValadation");
+const uploadController_1 = require("../controllers/uploadController");
+const router = (0, express_1.Router)();
+router.post('/sign-up', (0, validateMiddleware_1.default)(userValadation_1.signUpSchema), userController_1.signUp);
+router.post('/sign-in', (0, validateMiddleware_1.default)(userValadation_1.loginSchema), userController_1.loginUser);
+router.get('/users', userController_1.getAllUsers);
+router.get('/users/:id', authMiddleware_1.authenticate, userController_1.getUser);
+router.put('/users/:id', authMiddleware_1.authenticate, (0, validateMiddleware_1.default)(userValadation_1.signUpSchema), userController_1.updateUser);
+router.delete('/users/:id', authMiddleware_1.authenticate, userController_1.deleteUser);
+router.get('/generate-upload-url', authMiddleware_1.authenticate, uploadController_1.generateUploadURL);
+exports.default = router;
