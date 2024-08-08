@@ -8,14 +8,14 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-app.use(express.json()); 
+app.use(express.json());
 
 app.use('/api', userRoutes);
 app.use('/api', eventRoutes);
 app.use('/api/upload', uploadRoutes);
 
 mongoose
-  .connect(process.env.MONGO_URI!)
+  .connect(process.env.MONGO_URI as string)
   .then(() => {
     console.log('Connected to MongoDB');
   })

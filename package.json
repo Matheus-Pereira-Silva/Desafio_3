@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "tsx watch src/server.ts",
+    "start": "ts-node src/server.ts",
     "build": "tsc",
     "test": "jest",
     "tsc": "tsc",
@@ -33,7 +33,7 @@
     "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/mongoose": "^5.11.97",
-    "@types/node": "^22.0.1",
+    "@types/node": "^22.1.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "eslint": "^9.8.0",
@@ -51,3 +51,4 @@
   },
   "description": ""
 }
+ 
